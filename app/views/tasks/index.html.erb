@@ -1,11 +1,16 @@
 <h1>Tasks list</h1>
 <div class="checkdiv">
   <% @tasks.each do |task| %>
-  <label for="title"><input type="checkbox" id="title" name="box" checked><%= link_to task.title, task_path(task.id) %>
+  <label for="title">
+    <% if task.completed %>
+    <input type="checkbox" id="title" name="box" checked disabled="disabled">
+    <% else %>
+    <input type="checkbox" id="title" name="box" disabled="disabled">
+    <% end %>
+    <%= link_to task.title, task_path(task.id) %>
     <%= link_to "delete", task_path(task.id), method: :delete %>
     <%= link_to "edit", edit_path(task.id) %></label>
   <% end %>
   <br>
   <%= link_to "add  a new task", new_path %>
-</div>
 </div>
